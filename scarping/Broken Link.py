@@ -1,7 +1,7 @@
 # Import libraries
 from bs4 import BeautifulSoup, SoupStrainer
 import requests
-import validators
+
 
 # Prompt user to enter the URL
 
@@ -63,14 +63,5 @@ while True:
     else:
         break
 
-    # for other_link in external_links:
-    #     try:
-    #         external_page = requests.get(url)
-    #
-    #     # Get the response code of given URL
-    #         if str(external_page.status_code) != "200":
-    #             broken_url.append(other_link)
-    #     except:
-    #         broken_url.append(other_link)
 
 

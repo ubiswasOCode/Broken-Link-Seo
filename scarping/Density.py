@@ -2,39 +2,54 @@ import requests
 from bs4 import BeautifulSoup
 import metadata_parser
 
-url = "https://www.javatpoint.com/"
+
+def Get_Density_Check(find, word_count):
+    msg = []
+    if find in word_count:
+        density = word_count.count(find)
+        words_in_keyword = find.split()
+        total_length = len(word_count)
+        word_length= len(words_in_keyword)
+        try:
+            length = round(total_length//word_length,4)
+            density_rou = round(density / length,4)
+            total_rou = round(density_rou,4)
+            exist_keys = total_rou * 100
+            msg.append('\n' + str(round(exist_keys,3)) + '%' + ' keyword density')
+            msg.append('\nThe keyword appears ' + str(density) + ' times in the page.')
+        except ZeroDivisionError:
+            msg.append(f'{find} Not Userd')
+    else:
+        msg.append('\n' + str(find) + 'Not Userd')
+
+    return msg
+
+url = input("enter Url")
 req = requests.get(url)
 soup = BeautifulSoup(req.content, 'html.parser')
 print(soup.prettify())
 for para in soup.find_all(""):
     text=para.get_text()
 
-    print(text)
+    # print(text)
 page = metadata_parser.MetadataParser(url)
+
+
+
+##For all Keywords
 print(page.get_metadata("keywords"))
 word=page.get_metadata("keywords")
-
-
 word_count =word.split()
 
-find = input('\nWhat keyword are you looking for?: ')
 
-if find in word_count:
-    density = word_count.count(find)
-    words_in_keyword = find.split()
-    a = len(word_count)
-    b = len(words_in_keyword)
-    while True:
-        try:
-            c = round(a//b,4)
-            d = round(density / c,4)
-            e = round(d,4)
-            f = e * 100
-            print('\n' + str(round(f,3)) + '%' + ' keyword density')
-            print('\nThe keyword appears ' + str(density) + ' times in the page.')
-            break
-        except ZeroDivisionError:
-            print('\nDivision by Zero Error, Please input a valid keyword')
-            break
-else:
-    print('\n' + str(find) + ' does not appear in the URL, try again.')
+find = input('\nWhat keyword are you looking for?: ')
+messages = Get_Density_Check(find, word_count)
+for message in messages:
+    print(message)
+
+
+
+
+
+
+
