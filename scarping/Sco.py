@@ -1,4 +1,3 @@
-
 import metadata_parser
 import requests
 
@@ -10,18 +9,16 @@ error={}
 
 warning={}
 
-
 page=metadata_parser.MetadataParser(url)
 # print(page.metadata)
 
-
-
 title_tag=page.get_metadata('title')
 print("Congratulations your webpage is using a title tag.")
+
 if title_tag is None:
    error['title']="titile is Missing"
    # print(error)
-elif len(title_tag)>=30  and len(title_tag)<=50:
+elif len(title_tag)>=30  and len(title_tag)<=350:
     warning['title']="titile is big"
 else:
    print("titile is best")
@@ -49,7 +46,6 @@ keyword=page.get_metadata("keywords")
 if keyword is None:
     error['keyword'] = "keyword is Missing"
 elif len(keyword) >= 10:
-
     warning['Keyword'] = "Keyword is huge"
 else:
     print(f"Keyword is Less than 10 keywords")
@@ -143,7 +139,6 @@ for link in Soup.find_all('a'):
     under=link.get('href')
     if "_" in under:
         anc.append(under)
-
         if len(anc) is None:
             error['a'] = "anchor tag is Missing"
         elif len(anc) >= 100:
@@ -152,8 +147,41 @@ for link in Soup.find_all('a'):
             print("anchor tag is Best")
 
 
+ERR=1
+WARN=0.5
 
-print(len(error))
-print(len(warning))
+err=len(error)
+warn=len(warning)
 
-calculate=10/
+case=9
+temp=case
+
+
+for i in range(1,err+1):
+    temp=temp-ERR
+    # print(i,temp)
+
+for j in range(1,warn+1):
+    temp=temp-WARN
+    # print(j,temp)
+
+percent=(temp/case)*100
+print(percent)
+
+
+#
+# val_error=1
+# val_warn=0.5
+#
+# err=len(error)
+# warn=len(warning)
+#
+# total_case=9
+# for i in range(1,err):
+#     result=total_case-val_error-val_warn
+#
+# percent=(result/total_case)*100
+# print(err,"-------------error")
+# print(warn,"-------------Warn")
+# print(percent)
+# print(result)

@@ -31,7 +31,7 @@ print(soup.prettify())
 for para in soup.find_all(""):
     text=para.get_text()
 
-    # print(text)
+print(text,'----------------dnjasdjhsabdjhsabawsafa')
 page = metadata_parser.MetadataParser(url)
 
 

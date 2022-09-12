@@ -2,9 +2,7 @@
 from bs4 import BeautifulSoup, SoupStrainer
 import requests
 
-
 # Prompt user to enter the URL
-
 def get_links_from_url(url,visited):
     page = requests.get(url)
 
@@ -28,7 +26,6 @@ def get_links_from_url(url,visited):
 
     return non_visited_urls
 
-
 url = input("Enter your url: ")
 page_urls = [url]
 visited = []
@@ -36,7 +33,6 @@ broken_url = []
 external_links = []
 page = 1
 while True:
-
     page+=1
     if len(page_urls) >0:
         print(page_urls, "----page_urls---")

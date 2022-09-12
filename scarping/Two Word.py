@@ -1,4 +1,3 @@
-import string
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,7 +11,8 @@ soup = BeautifulSoup(req.content, 'html.parser')
 two = []
 three = []
 four = []
-for para in soup.find_all("p" or "h1" or "h2" or "h3" or "h4" or "a"):
+
+for para in soup.find_all("p"):
     text=para.get_text()
     # print(text)
     "Reinforcement Learning"
