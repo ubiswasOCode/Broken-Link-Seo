@@ -159,29 +159,12 @@ temp=case
 
 for i in range(1,err+1):
     temp=temp-ERR
-    # print(i,temp)
+    print(temp,"-------error")
 
 for j in range(1,warn+1):
     temp=temp-WARN
-    # print(j,temp)
+    print(temp,"---------warn")
 
 percent=(temp/case)*100
 print(percent)
 
-
-#
-# val_error=1
-# val_warn=0.5
-#
-# err=len(error)
-# warn=len(warning)
-#
-# total_case=9
-# for i in range(1,err):
-#     result=total_case-val_error-val_warn
-#
-# percent=(result/total_case)*100
-# print(err,"-------------error")
-# print(warn,"-------------Warn")
-# print(percent)
-# print(result)
