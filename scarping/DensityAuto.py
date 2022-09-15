@@ -100,4 +100,5 @@ print(four, "----------------4")
 total_list=one+two+three+four
 print(total_list,"-------------------------total")
 
-
+word_count = total_list
+for i in word_count:
