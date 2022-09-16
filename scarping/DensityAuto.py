@@ -1,11 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 import metadata_parser
+import re
+
 
 
 url = input("enter Url")
 req = requests.get(url)
 soup = BeautifulSoup(req.content, 'html.parser')
+print(soup)
 print(soup.prettify())
 one=[]
 two = []
@@ -19,7 +22,24 @@ for para in soup.find_all("p"):
     # convert into List
     li = list(text.split())
     print(li,"-------------p")
+    if len(li) == 1:
+        one.append(" ".join(li))
+    elif len(li) == 2:
+        two.append(" ".join(li))
+    elif len(li) == 3:
+        three.append(" ".join(li))
+    elif len(li) == 4:
+        four.append(" ".join(li))
+    else:
+        pass
 
+for para in soup.find_all("a"):
+    text = para.get_text()
+    # print(text)
+    "Reinforcement Learning"
+    # convert into List
+    li = list(text.split())
+    print(li,"-------------a")
     if len(li) == 1:
         one.append(" ".join(li))
     elif len(li) == 2:
@@ -97,8 +117,10 @@ print(two, "------------2")
 print(three, "-------------3")
 print(four, "----------------4")
 
-total_list=one+two+three+four
-print(total_list,"-------------------------total")
+#After Removing
+mylist = list(dict.fromkeys(one))
+print(mylist,"_________________________new")
 
-word_count = total_list
-for i in word_count:
+results = soup.body.find_all(string=re.compile('.*{0}.*'.format(mylist)), recursive=True)
+
+print('Found the word "{0}" {1} times\n'.format(mylist, len(results)))
